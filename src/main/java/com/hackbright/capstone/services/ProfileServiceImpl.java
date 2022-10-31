@@ -38,9 +38,9 @@ public class ProfileServiceImpl implements ProfileService {
         Optional<Profile> userOptional = profileRepository.findByUsername(profileDto.getUsername());
         if (userOptional.isPresent()) {
             if (passwordEncoder.matches(profileDto.getPassword(), userOptional.get().getPassword())) {
-                response.add("User Login Successful");
-//                response.add("http://localhost:8080/home.html");
+                response.add("http://localhost:8082/home.html");
                 response.add(String.valueOf(userOptional.get().getProfileid()));
+                response.add("User Login Successful");
             }else{
                 response.add("Username or password incorrect");
             }

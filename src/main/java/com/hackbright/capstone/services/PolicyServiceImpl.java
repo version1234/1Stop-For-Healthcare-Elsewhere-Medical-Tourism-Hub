@@ -14,27 +14,22 @@ public class PolicyServiceImpl implements PolicyService {
     @Autowired
     private PolicyRepository policyRepository;
 
-     @Override
-     public List<Policy> findAll(){
-         List<Policy> policies =  policyRepository.findAll();
-         return policies;
-     }
-
     @Override
-    public Policy findByid(Long id){
-        Optional<Policy> policyOptional =  policyRepository.findById(id);
-        if(policyOptional.isPresent()){
-            return policyOptional.get();
-        }
-        return null;
+    public List<Policy> findAll() {
+        List<Policy> policies = policyRepository.findAll();
+        return policies;
     }
 
     @Override
-    public List<Policy> findAllByAgelimitminLessThanAndAgelimitmaxGreaterThan(int age){
-        Optional<List<Policy>> policies =  policyRepository.findAllByAgelimitminLessThanAndAgelimitmaxGreaterThan(age,age);
-        if(policies.isPresent())
-            return policies.get();
-        return  null;
+    public Policy findByid(Long id) {
+        Optional<Policy> policyOptional = policyRepository.findById(id);
+        return policyOptional.get();
+    }
+
+    @Override
+    public List<Policy> findAllByAgelimitminLessThanAndAgelimitmaxGreaterThan(int age) {
+        Optional<List<Policy>> policies = policyRepository.findAllByAgelimitminLessThanAndAgelimitmaxGreaterThan(age, age);
+        return policies.get();
     }
 
 }

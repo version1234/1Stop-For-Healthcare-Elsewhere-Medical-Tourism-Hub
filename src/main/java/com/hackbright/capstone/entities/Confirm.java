@@ -1,6 +1,7 @@
 package com.hackbright.capstone.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.hackbright.capstone.dtos.ConfirmDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,14 +36,22 @@ public class Confirm {
 
 
     @ManyToOne
-    @JoinColumn(name="policyid", nullable = false)
+    @JoinColumn(name = "policyid", nullable = false)
     @JsonBackReference
     private Policy policy;
 
     @ManyToOne
-    @JoinColumn(name="profileid", nullable = false)
+    @JoinColumn(name = "profileid", nullable = false)
     @JsonBackReference
     private Profile profile;
 
+
+    public Confirm(ConfirmDto confirmDto) {
+        this.price = confirmDto.getPrice();
+        this.startDate = confirmDto.getStartDate();
+        this.endDate = confirmDto.getEndDate();
+//        this.profile = confirmDto.getProfile();
+//        this.policy = confirmDto.getPolicy();
+    }
 
 }

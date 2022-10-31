@@ -1,12 +1,18 @@
 package com.hackbright.capstone.dtos;
 
 import com.hackbright.capstone.entities.Confirm;
-import com.hackbright.capstone.entities.Login;
+import com.hackbright.capstone.entities.Policy;
+import com.hackbright.capstone.entities.Profile;
+import lombok.*;
 
-import javax.persistence.Column;
+
 import java.io.Serializable;
 import java.util.Date;
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+//@Getter
+//@Setter
 public class ConfirmDto implements Serializable {
 
     private Long confirmid;
@@ -22,6 +28,7 @@ public class ConfirmDto implements Serializable {
     private Long policyid;
 
 
+
     public ConfirmDto(Confirm confirm) {
         if (confirm.getConfirmid() != null) {
             this.confirmid = confirm.getConfirmid();
@@ -35,11 +42,11 @@ public class ConfirmDto implements Serializable {
         if (confirm.getEndDate() != null){
             this.endDate = confirm.getEndDate();
         }
-//        if (confirm.getProfileid() != null){
-//            this.profileid = confirm.getProfileid();
-//        }
-//        if (confirm.getPolicyid() != null){
-//            this.policyid = confirm.getPolicyid();
-//        }
+        if (confirm.getPolicy() != null){
+            this.policyid = confirm.getPolicy().getPolicyid();
+        }
+        if (confirm.getProfile() != null){
+            this.profileid = confirm.getProfile().getProfileid();
+        }
     }
 }

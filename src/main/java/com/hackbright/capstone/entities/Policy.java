@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,7 +33,7 @@ public class Policy {
     private String policylimit;
 
     @Column
-    private String policydailyprice;
+    private int policydailyprice;
 
     @Column
     private int agelimitmin;
@@ -44,7 +43,6 @@ public class Policy {
 
 
     @OneToMany(mappedBy = "policy", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE,CascadeType.PERSIST})
-    //Json object created for this note
     @JsonManagedReference
     private Set<Confirm> confirmSet = new HashSet<>();
 
@@ -58,7 +56,7 @@ public class Policy {
             this.policydetail = policyDto.getPolicydetail();
         if (policyDto.getPolicylimit() != null)
             this.policylimit = policyDto.getPolicylimit();
-        if (policyDto.getPolicydailyprice() != null)
+        if (policyDto.getPolicydailyprice() != 0)
             this.policydailyprice = policyDto.getPolicydailyprice();
         if (policyDto.getAgelimitmin() != 0)
             this.agelimitmin = policyDto.getAgelimitmin();

@@ -4,11 +4,6 @@ import com.hackbright.capstone.entities.Policy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.io.Serializable;
 
 @Data
@@ -24,7 +19,7 @@ public class PolicyDto implements Serializable {
 
     private String policylimit;
 
-    private String policydailyprice;
+    private int policydailyprice;
 
     private int agelimitmin;
 
@@ -39,7 +34,7 @@ public class PolicyDto implements Serializable {
             this.policydetail = policy.getPolicydetail();
         if (policy.getPolicylimit() != null)
             this.policylimit = policy.getPolicylimit();
-        if (policy.getPolicydailyprice() != null)
+        if (policy.getPolicydailyprice() != 0)
             this.policydailyprice = policy.getPolicydailyprice();
         if (policy.getAgelimitmin() != 0)
             this.agelimitmin = policy.getAgelimitmin();
