@@ -42,6 +42,9 @@ public class Profile {
     private String email;
 
     @Column
+    private String phonenumber;
+
+    @Column
     private String address;
 
     @Column
@@ -78,6 +81,8 @@ public class Profile {
             this.dateofbirth = profileDto.getDateofbirth();
         if (profileDto.getEmail() != null)
             this.email = profileDto.getEmail();
+        if (profileDto.getPhonenumber() != null)
+            this.phonenumber = profileDto.getPhonenumber();
         if (profileDto.getAddress() != null)
             this.address = profileDto.getAddress();
         if (profileDto.getCity() != null)

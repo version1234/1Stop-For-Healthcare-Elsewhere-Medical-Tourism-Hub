@@ -26,8 +26,8 @@ public class ProfileServiceImpl implements ProfileService {
         List<String> response = new ArrayList<>();
         Profile profile = new Profile(profileDto);
         profileRepository.saveAndFlush(profile);
-        response.add("User Added Successfully");
-//        response.add("http://localhost:8080/login.html");
+//        response.add("User Added Successfully");
+        response.add("http://localhost:8082/login.html");
         return response;
     }
 

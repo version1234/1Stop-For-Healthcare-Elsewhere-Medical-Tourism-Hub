@@ -28,6 +28,8 @@ public class ProfileDto implements Serializable {
 
     private String email;
 
+    private String phonenumber;
+
     private String address;
 
     private String city;
@@ -51,6 +53,8 @@ public class ProfileDto implements Serializable {
             this.dateofbirth = profile.getDateofbirth();
         if (profile.getEmail() != null)
             this.email = profile.getEmail();
+        if (profile.getPhonenumber() != null)
+            this.phonenumber = profile.getPhonenumber();
         if (profile.getAddress() != null)
             this.address = profile.getAddress();
         if (profile.getCity() != null)
