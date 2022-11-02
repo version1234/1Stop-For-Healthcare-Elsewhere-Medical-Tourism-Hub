@@ -18,7 +18,7 @@ public class PolicyController {
     private PolicyService policyService;
 
     @Autowired
-    private ProfileService profileService
+    private ProfileService profileService;
 
     @GetMapping("/all")
     public List<Policy> getAllPolicies(){
@@ -30,16 +30,16 @@ public class PolicyController {
         return policyService.findAllByAgelimitminLessThanAndAgelimitmaxGreaterThan(ageValue);
     }
 
-    @GetMapping("/{id}")
-    public Policy getPolicyById(@PathVariable Long id){
-        return policyService.findByid(id);
-    }
+//    @GetMapping("/{id}")
+//    public Policy getPolicyById(@PathVariable Long id){
+//        return policyService.findByid(id);
+//    }
 
-    @PostMapping("/profile")   ///  need to work on this method.
-    public List<Policy> getPoliciesByProfile(@RequestBody ConfirmPolityDto confirmPolityDto){
-        System.out.println(confirmPolityDto.getProfileid());
-        ProfileDto profileDto =profileService.userDetailsById(confirmPolityDto.getProfileid());
-
-        return policyService.findByid(id);
-    }
+//    @PostMapping("/profile")   ///  need to work on this method.
+//    public List<Policy> getPoliciesByProfile(@RequestBody ConfirmPolityDto confirmPolityDto){
+//        System.out.println(confirmPolityDto.getProfileid());
+//        ProfileDto profileDto =profileService.userDetailsById(confirmPolityDto.getProfileid());
+//
+//        return policyService.findByid(id);
+//    }
 }
