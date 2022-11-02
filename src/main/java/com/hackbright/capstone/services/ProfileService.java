@@ -10,4 +10,6 @@ public interface ProfileService {
     List<String> addUser(ProfileDto profileDto);
 
     List<String> userLogin(ProfileDto profileDto);
+
+    ProfileDto userDetailsById(Long profileid);
 }

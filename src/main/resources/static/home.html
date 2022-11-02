@@ -9,38 +9,21 @@
 </head>
 <body>
 <h1>Home</h1>
-<h2>Welcome To the Note App</h2>
+<h2>Visitors Insurance App</h2>
 <a class="btn-danger navbar-btn" href="./login.html">Logout</a>
 <div class="container" id="home-container">
-    <div id="note-from-container">
-        <form id="note-form">
-            <div class="form-group">
-                <textarea class="form-control" id="note-input" placeholder="Add your note..." rows="5"></textarea>
-            </div>
-            <button id="submit-button" type="submit" class="btn btn-primary mt-1">Submit</button>
-        </form>
-        <div id="note-container" class="container-fluid">
-        </div>
+    <div id="via-from-container">
+        <div id="via-userdetails-container" class="container-fluid"></div>
+        <br> <br>
+        <div class="mt-1">
+            <a href="./policies.html" class="btn btn-secondary">Add a Policy</a>
+        </div><br> <br>
+        <div id="via-selectedInsurance-container" class="container-fluid"></div>
+
     </div>
 </div>
 
-<div class="model fade" id="note-edit-modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="note-edit-modal-title" aria-hidden="true">
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id=note-edit-modal-title">Edit Your note</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="model" aria-lable="Close"></button>
-        </div>
-        <div class="modal-body d-flex">
-            <textarea class="form-control" rows="5" id="note-body"></textarea>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn-secondary" data-bas-dismiss="modal">Close</button>
-            <button type="button" id="update-note-button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
-        </div>
-    </div>
-</div>
-</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="./javascript/home.js" type="application/javascript"></script>
 

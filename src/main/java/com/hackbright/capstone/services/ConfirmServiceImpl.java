@@ -1,6 +1,7 @@
 package com.hackbright.capstone.services;
 
 import com.hackbright.capstone.dtos.ConfirmDto;
+import com.hackbright.capstone.dtos.ConfirmPolityDto;
 import com.hackbright.capstone.entities.Confirm;
 import com.hackbright.capstone.entities.Policy;
 import com.hackbright.capstone.entities.Profile;
@@ -47,6 +48,17 @@ public class ConfirmServiceImpl implements ConfirmService {
     }
 
     @Override
+    public List<ConfirmPolityDto> getConfirmsByProfile(Long profileid) {
+        Optional<Profile> optionalProfile = profileRepository.findById(profileid);
+        Profile profile = null;
+        if (optionalProfile.isPresent())
+            profile = optionalProfile.get();
+
+        List<Confirm> confirms = confirmRepository.findByProfile(profile);
+        return  convertConfirmsToConfirmPolicyDto(confirms);
+
+    }
+    @Override
     public ConfirmDto findById(Long id) {
         ConfirmDto confirmDto = new ConfirmDto();
         Optional<Confirm> confirmOptional = confirmRepository.findById(id);
@@ -55,6 +67,12 @@ public class ConfirmServiceImpl implements ConfirmService {
             confirmDto = new ConfirmDto(confirm);
         }
         return confirmDto;
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(Long id) {
+        confirmRepository.deleteById(id);
     }
 
     @Override
@@ -89,4 +107,16 @@ public class ConfirmServiceImpl implements ConfirmService {
             return confirmDtos;
 
         }
+
+    private List<ConfirmPolityDto> convertConfirmsToConfirmPolicyDto(List<Confirm> confirms){
+        List<ConfirmPolityDto> confirmPolityDtos = new ArrayList<ConfirmPolityDto>();
+        if(confirms!= null) {
+            for (Confirm confirm:confirms) {
+                confirmPolityDtos.add(new ConfirmPolityDto(confirm));
+            }
+        }
+        return confirmPolityDtos;
+
+    }
+
 }

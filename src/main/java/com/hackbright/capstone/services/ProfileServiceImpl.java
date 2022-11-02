@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalLong;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {
@@ -48,6 +49,16 @@ public class ProfileServiceImpl implements ProfileService {
             response.add("Username or password incorrect");
         }
         return response;
+    }
+
+    @Override
+    public ProfileDto userDetailsById(Long profileid){
+        ProfileDto profileDto = new ProfileDto();
+        Optional<Profile> optionalProfile = profileRepository.findById(profileid);
+        if(optionalProfile.isPresent()){
+            profileDto = new ProfileDto(optionalProfile.get());
+        }
+        return profileDto;
     }
 
 }

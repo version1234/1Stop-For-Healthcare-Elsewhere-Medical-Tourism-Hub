@@ -4,108 +4,18 @@ const cookieArr = document.cookie.split("=")
 const userId = cookieArr[1];
 
 //DOM Elements
-const submitForm = document.getElementById("note-form")
-const noteContainer = document.getElementById("note-container")
+const submitForm = document.getElementById("vis-form")
+const userDetailsContainer = document.getElementById("via-userdetails-container")
+const selectedInsurancesContainer = document.getElementById("via-selectedInsurance-container")
+const policiesContainer = document.getElementById("via-policies-container")
 
-//Modal Elements
-let noteBody = document.getElementById(`note-body`)
-let updateNoteBtn = document.getElementById('update-note-button')
 
 const headers = {
     'Content-Type': 'application/json'
 }
 
-const baseUrl = "http://localhost:8080/api/v1/notes/"
+const baseUrl = "http://localhost:8082/api/v1/"
 
-const handleSubmit = async (e) => {
-    e.preventDefault()
-    let bodyObj = {
-        body: document.getElementById("note-input").value
-    }
-    await addNote(bodyObj);
-    document.getElementById("note-input").value = ''
-}
-
-async function addNote(obj) {
-    const response = await fetch(`${baseUrl}user/${userId}`, {
-        method: "POST",
-        body: JSON.stringify(obj),
-        headers: headers
-    })
-        .catch(err => console.error(err.message))
-    if (response.status == 200) {
-        return getNotes(userId);
-    }
-}
-
-async function getNotes(userId) {
-    await fetch(`${baseUrl}user/${userId}`, {
-        method: "GET",
-        headers: headers
-    })
-        .then(response => response.json())
-        .then(data => createNoteCards(data))
-        .catch(err => console.error(err))
-}
-
-async function handleDelete(noteId){
-    await fetch(baseUrl + noteId, {
-        method: "DELETE",
-        headers: headers
-    })
-        .catch(err => console.error(err))
-
-    return getNotes(userId);
-}
-
-async function getNoteById(noteId){
-    await fetch(baseUrl + noteId, {
-        method: "GET",
-        headers: headers
-    })
-        .then(res => res.json())
-        .then(data => populateModal(data))
-        .catch(err => console.error(err.message))
-}
-
-async function handleNoteEdit(noteId){
-    let bodyObj = {
-        id: noteId,
-        body: noteBody.value
-    }
-
-    await fetch(baseUrl, {
-        method: "PUT",
-        body: JSON.stringify(bodyObj),
-        headers: headers
-    })
-        .catch(err => console.error(err))
-
-    return getNotes(userId);
-}
-
-const createNoteCards = (array) => {
-    noteContainer.innerHTML = ''
-    array.forEach(obj => {
-        let noteCard = document.createElement("div")
-        noteCard.classList.add("m-2")
-        noteCard.innerHTML = `
-            <div class="card d-flex" style="width: 18rem; height: 18rem;">
-                <div class="card-body d-flex flex-column  justify-content-between" style="height: available">
-                    <p class="card-text">${obj.body}</p>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-danger" onclick="handleDelete(${obj.id})">Delete</button>
-                        <button onclick="getNoteById(${obj.id})" type="button" class="btn btn-primary"
-                        data-bs-toggle="modal" data-bs-target="#note-edit-modal">
-                        Edit
-                        </button>
-                    </div>
-                </div>
-            </div>
-        `
-        noteContainer.append(noteCard);
-    })
-}
 function handleLogout(){
     let c = document.cookie.split(";");
     for(let i in c){
@@ -113,13 +23,86 @@ function handleLogout(){
     }
 }
 
-const populateModal = (obj) =>{
-    noteBody.innerText = ''
-    noteBody.innerText = obj.body
-    updateNoteBtn.setAttribute('data-note-id', obj.id)
+async function handleDelete(confirmid){
+    await fetch(`${baseUrl}confirm/${confirmid}`, {
+        method: "DELETE",
+        headers: headers
+    })
+        .catch(err => console.error(err))
+
+    return getConfirmedInsuranceDetailsByUser(userId);
 }
 
-getNotes(userId);
+
+async function getUserDetails(userId) {
+    await fetch(`${baseUrl}profile/${userId}`, {
+        method: "GET",
+        headers: headers
+    })
+        .then(response => response.json())
+        .then(data => displayUserDetails(data))
+        .catch(err => console.error(err))
+}
+
+
+const displayUserDetails = (obj) => {
+    userDetailsContainer.innerHTML = ''
+    let displayCard = document.createElement("div")
+    displayCard.classList.add("m-2")
+    displayCard.innerHTML = `
+        <div class="card d-flex" style="width: 36rem; height: 15rem;">
+            <div class="card-body d-flex flex-column  justify-content-between" style="height: available">
+                <p class="card-text"> <h3>Welcome back ${obj.firstname}, ${obj.lastname}</h3></p>
+                Address : ${obj.address}, ${obj.city}, ${obj.state}, ${obj.zip}
+                <br>Phone : ${obj.phonenumber}
+                <br>email: ${obj.email}
+            </div>
+        </div>
+        `
+    userDetailsContainer.append(displayCard)
+}
+
+async function getConfirmedInsuranceDetailsByUser(userId) {
+    await fetch(`${baseUrl}confirm/profile/${userId}`, {
+        method: "GET",
+        headers: headers
+    })
+        .then(response => response.json())
+        .then(data => displayConfirmedInsuranceDetails(data))
+        .catch(err => console.error(err))
+}
+
+const displayConfirmedInsuranceDetails = (array) => {
+    selectedInsurancesContainer.innerHTML = '<table><tr>'
+        array.forEach(obj => {
+    let displayCard = document.createElement("div")
+
+    displayCard.classList.add("m-2")
+    displayCard.innerHTML = `<td>
+        <div class="card d-flex" style="width: 18rem; height: 18rem;">
+            <div class="card-body d-flex flex-column  justify-content-between" style="height: available">
+                <p>
+                    <p class="card-text"> <h4> ${obj.policy.policyname}</h4></p><br>
+                    ${obj.policy.policydetail}<br>
+                    Limit:  ${obj.policy.policylimit}<br>
+                    Premium: ${obj.price}<br>
+                    Valid From  ${obj.startDate},  To  ${obj.endDate}
+               </p>
+               <div class="d-flex justify-content-between">
+                   <button class="btn btn-danger" onclick="handleDelete(${obj.confirmid})">Delete</button>
+               </div>
+            </div>
+        </div></td>
+        `
+    selectedInsurancesContainer.append(displayCard)
+
+    })
+    selectedInsurancesContainer.innerHTML = selectedInsurancesContainer.innerHTML + '</tr></table>'
+}
+
+
+getUserDetails(userId);
+getConfirmedInsuranceDetailsByUser(userId);
 
 submitForm.addEventListener("submit", handleSubmit)
 

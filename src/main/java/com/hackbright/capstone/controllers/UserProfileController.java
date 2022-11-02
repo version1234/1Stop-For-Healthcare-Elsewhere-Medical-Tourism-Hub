@@ -4,10 +4,7 @@ import com.hackbright.capstone.dtos.ProfileDto;
 import com.hackbright.capstone.services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +28,12 @@ public class UserProfileController {
     public List<String> userLogin(@RequestBody ProfileDto profileDto){
         System.out.println("test");
         return profileService.userLogin(profileDto);
+    }
+
+    @GetMapping("/{profileId}")
+    public ProfileDto getUserDetails(@PathVariable Long profileId){
+        System.out.println("test");
+        return profileService.userDetailsById(profileId);
     }
 
 }
