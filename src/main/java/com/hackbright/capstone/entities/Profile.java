@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,7 +37,7 @@ public class Profile {
     private String lastname;
 
     @Column
-    private String dateofbirth;
+    private Date dateofbirth;
 
     @Column
     private String email;

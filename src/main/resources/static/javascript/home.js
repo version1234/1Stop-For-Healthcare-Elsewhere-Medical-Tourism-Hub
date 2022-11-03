@@ -106,7 +106,3 @@ getConfirmedInsuranceDetailsByUser(userId);
 
 submitForm.addEventListener("submit", handleSubmit)
 
-updateNoteBtn.addEventListener("click", (e)=>{
-    let noteId = e.target.getAttribute('data-note-id')
-    handleNoteEdit(noteId);
-})

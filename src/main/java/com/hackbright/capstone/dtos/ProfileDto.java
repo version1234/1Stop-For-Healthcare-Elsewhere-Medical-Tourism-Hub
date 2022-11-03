@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -24,7 +25,7 @@ public class ProfileDto implements Serializable {
 
     private String lastname;
 
-    private String dateofbirth;
+    private Date dateofbirth;
 
     private String email;
 

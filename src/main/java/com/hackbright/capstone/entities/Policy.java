@@ -41,6 +41,9 @@ public class Policy {
     @Column
     private int agelimitmax;
 
+    @Column
+    private String imageName;
+
 
     @OneToMany(mappedBy = "policy", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     @JsonManagedReference
