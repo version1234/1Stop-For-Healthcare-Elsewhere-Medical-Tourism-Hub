@@ -36,6 +36,8 @@ public class ConfirmPolityDto {
 
     private String endDateDisplay;
 
+    private String imageName;
+
 
     public ConfirmPolityDto(Confirm confirm) {
         if (confirm.getConfirmid() != null) {
@@ -57,6 +59,9 @@ public class ConfirmPolityDto {
         if (confirm.getProfile() != null) {
             this.profileid = confirm.getProfile().getProfileid();
             this.profile = confirm.getProfile();
+        }
+        if (confirm.getPolicy().getImageName() != null) {
+            this.imageName = confirm.getPolicy().getImageName();
         }
     }
 }

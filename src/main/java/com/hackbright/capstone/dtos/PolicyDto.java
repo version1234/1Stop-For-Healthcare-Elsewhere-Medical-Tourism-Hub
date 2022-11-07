@@ -4,6 +4,7 @@ import com.hackbright.capstone.entities.Policy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 @Data
@@ -25,6 +26,8 @@ public class PolicyDto implements Serializable {
 
     private int agelimitmax;
 
+    private String imageName;
+
     public PolicyDto(Policy policy) {
         if (policy.getPolicyid() != null)
             this.policyid = policy.getPolicyid();
@@ -40,5 +43,7 @@ public class PolicyDto implements Serializable {
             this.agelimitmin = policy.getAgelimitmin();
         if (policy.getAgelimitmax() != 0)
             this.agelimitmax = policy.getAgelimitmax();
+        if (policy.getImageName() != null)
+            this.imageName = policy.getImageName();
     }
 }

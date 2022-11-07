@@ -75,6 +75,8 @@ const displayConfirmedInsuranceDetails = (array) => {
         array.forEach(obj => {
         let insuranceCard = `
             <div class="selectedInsurance_card">
+                <table><tr><td><img src="../images/${obj.imageName}" width="350" height="100"></td></tr>
+                 <tr><td>
                 <h3> ${obj.policy.policyname}</h3><br>
                 ${obj.policy.policydetail}<br>
                 Limit:  ${obj.policy.policylimit}<br>
@@ -83,6 +85,7 @@ const displayConfirmedInsuranceDetails = (array) => {
                <div >
                    <button class="button3" onclick="handleDelete(${obj.confirmid})">Delete</button>
                </div>
+               </td></tr></table>
             <div><br>
         `
         selectedInsurancesContainer.insertAdjacentHTML("beforeend", insuranceCard)

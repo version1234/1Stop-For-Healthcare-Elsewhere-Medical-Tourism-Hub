@@ -42,13 +42,17 @@ const displayAvailableInsuranceDetails = (array) => {
         array.forEach(obj => {
         let insuranceCard = `
             <div class="selectedInsurance_card">
+                    <table><tr><td><img src="../images/${obj.imageName}" width="350" height="100"></td></tr>
+                    <tr><td>
                    <h3> ${obj.policyname}</h3><br>
                    ${obj.policydetail}<br>
                    Limit:  ${obj.policylimit}<br>
                    Premium: ${obj.policydailyprice}
+                   image: ${obj.imageName}
                   <div>
                       <button class="button3" onclick="handleInsert(${obj.policyid})">Select</button>
                   </div>
+                  </td></tr></table>
             </div><br>
             `
         policiesContainer.insertAdjacentHTML("beforeend", insuranceCard)

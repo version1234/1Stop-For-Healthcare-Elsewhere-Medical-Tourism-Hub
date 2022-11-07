@@ -45,7 +45,7 @@ public class Policy {
     private String imageName;
 
 
-    @OneToMany(mappedBy = "policy", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @OneToMany(mappedBy = "policy", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JsonManagedReference
     private Set<Confirm> confirmSet = new HashSet<>();
 
@@ -65,5 +65,7 @@ public class Policy {
             this.agelimitmin = policyDto.getAgelimitmin();
         if (policyDto.getAgelimitmax() != 0)
             this.agelimitmax = policyDto.getAgelimitmax();
+        if (policyDto.getImageName() != null)
+            this.imageName = policyDto.getImageName();
     }
 }
