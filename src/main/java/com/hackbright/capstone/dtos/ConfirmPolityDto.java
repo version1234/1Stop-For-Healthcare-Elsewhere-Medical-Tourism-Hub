@@ -32,6 +32,10 @@ public class ConfirmPolityDto {
 
     private Policy policy;
 
+    private String startDateDisplay;
+
+    private String endDateDisplay;
+
 
     public ConfirmPolityDto(Confirm confirm) {
         if (confirm.getConfirmid() != null) {
@@ -40,19 +44,19 @@ public class ConfirmPolityDto {
         if (confirm.getPrice() != 0) {
             this.price = confirm.getPrice();
         }
-        if (confirm.getStartDate() != null){
+        if (confirm.getStartDate() != null) {
             this.startDate = confirm.getStartDate();
         }
-        if (confirm.getEndDate() != null){
+        if (confirm.getEndDate() != null) {
             this.endDate = confirm.getEndDate();
         }
-        if (confirm.getPolicy() != null){
+        if (confirm.getPolicy() != null) {
             this.policyid = confirm.getPolicy().getPolicyid();
-             this.policy = confirm.getPolicy();
+            this.policy = confirm.getPolicy();
         }
-        if (confirm.getProfile() != null){
+        if (confirm.getProfile() != null) {
             this.profileid = confirm.getProfile().getProfileid();
-             this.profile = confirm.getProfile();
+            this.profile = confirm.getProfile();
         }
     }
 }

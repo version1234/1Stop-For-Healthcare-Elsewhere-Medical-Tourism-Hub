@@ -6,7 +6,7 @@ const userId = cookieArr[1];
 //DOM Elements
 const submitForm = document.getElementById("vis-form")
 const userDetailsContainer = document.getElementById("via-userdetails-container")
-const selectedInsurancesContainer = document.getElementById("via-selectedInsurance-container")
+const selectedInsurancesContainer = document.getElementById("via-selectedInsurance-div")
 const policiesContainer = document.getElementById("via-policies-container")
 
 
@@ -48,16 +48,15 @@ async function getUserDetails(userId) {
 const displayUserDetails = (obj) => {
     userDetailsContainer.innerHTML = ''
     let displayCard = document.createElement("div")
-    displayCard.classList.add("m-2")
+
     displayCard.innerHTML = `
-        <div class="card d-flex" style="width: 36rem; height: 15rem;">
-            <div class="card-body d-flex flex-column  justify-content-between" style="height: available">
-                <p class="card-text"> <h3>Welcome back ${obj.firstname}, ${obj.lastname}</h3></p>
-                Address : ${obj.address}, ${obj.city}, ${obj.state}, ${obj.zip}
-                <br>Phone : ${obj.phonenumber}
-                <br>email: ${obj.email}
+            <div><table>
+                <tr><td></td><td><p class="welcomeCard"> <h3>Welcome</h3></p></td></tr>
+                <tr><td></td><td><p class="welcomeCard"> <h3>${obj.firstname}, ${obj.lastname}</h3></p></td></tr>
+                <tr><td>Phone: </td><td> ${obj.phonenumber}</td></tr>
+                 <tr><td>email:</td><td>${obj.email}</td></tr>
+              </table>
             </div>
-        </div>
         `
     userDetailsContainer.append(displayCard)
 }
@@ -73,31 +72,21 @@ async function getConfirmedInsuranceDetailsByUser(userId) {
 }
 
 const displayConfirmedInsuranceDetails = (array) => {
-    selectedInsurancesContainer.innerHTML = '<table><tr>'
         array.forEach(obj => {
-    let displayCard = document.createElement("div")
-
-    displayCard.classList.add("m-2")
-    displayCard.innerHTML = `<td>
-        <div class="card d-flex" style="width: 18rem; height: 18rem;">
-            <div class="card-body d-flex flex-column  justify-content-between" style="height: available">
-                <p>
-                    <p class="card-text"> <h4> ${obj.policy.policyname}</h4></p><br>
-                    ${obj.policy.policydetail}<br>
-                    Limit:  ${obj.policy.policylimit}<br>
-                    Premium: ${obj.price}<br>
-                    Valid From  ${obj.startDate},  To  ${obj.endDate}
-               </p>
-               <div class="d-flex justify-content-between">
-                   <button class="btn btn-danger" onclick="handleDelete(${obj.confirmid})">Delete</button>
+        let insuranceCard = `
+            <div class="selectedInsurance_card">
+                <h3> ${obj.policy.policyname}</h3><br>
+                ${obj.policy.policydetail}<br>
+                Limit:  ${obj.policy.policylimit}<br>
+                Premium: ${obj.price}<br>
+                Valid From:  ${obj.startDateDisplay},  To:  ${obj.endDateDisplay}<br>
+               <div >
+                   <button class="button3" onclick="handleDelete(${obj.confirmid})">Delete</button>
                </div>
-            </div>
-        </div></td>
+            <div><br>
         `
-    selectedInsurancesContainer.append(displayCard)
-
+        selectedInsurancesContainer.insertAdjacentHTML("beforeend", insuranceCard)
     })
-    selectedInsurancesContainer.innerHTML = selectedInsurancesContainer.innerHTML + '</tr></table>'
 }
 
 

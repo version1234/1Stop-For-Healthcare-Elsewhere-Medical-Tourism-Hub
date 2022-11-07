@@ -18,21 +18,20 @@ public class UserProfileController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
-    public List<String> addUser(@RequestBody ProfileDto profileDto){
+    public List<String> addUser(@RequestBody ProfileDto profileDto) {
         String passHash = passwordEncoder.encode(profileDto.getPassword());
         profileDto.setPassword(passHash);
         return profileService.addUser(profileDto);
     }
 
     @PostMapping("/login")
-    public List<String> userLogin(@RequestBody ProfileDto profileDto){
-        System.out.println("test");
+    public List<String> userLogin(@RequestBody ProfileDto profileDto) {
         return profileService.userLogin(profileDto);
     }
 
     @GetMapping("/{profileId}")
-    public ProfileDto getUserDetails(@PathVariable Long profileId){
-        System.out.println("test");
+    public ProfileDto getUserDetails(@PathVariable Long profileId) {
+
         return profileService.userDetailsById(profileId);
     }
 

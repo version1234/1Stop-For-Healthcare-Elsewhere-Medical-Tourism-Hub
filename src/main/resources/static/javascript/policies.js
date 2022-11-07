@@ -35,16 +35,29 @@ async function handleInsert(policyIdValue){
         headers: headers
     })
         .catch(err => console.error(err))
-//    const responseArr = await response.json()
-
-//    if (response.status === 200){
         window.location.replace("http://localhost:8082/home.html")
-//    }
 }
 
+const displayAvailableInsuranceDetails = (array) => {
+        array.forEach(obj => {
+        let insuranceCard = `
+            <div class="selectedInsurance_card">
+                   <h3> ${obj.policyname}</h3><br>
+                   ${obj.policydetail}<br>
+                   Limit:  ${obj.policylimit}<br>
+                   Premium: ${obj.policydailyprice}
+                  <div>
+                      <button class="button3" onclick="handleInsert(${obj.policyid})">Select</button>
+                  </div>
+            </div><br>
+            `
+        policiesContainer.insertAdjacentHTML("beforeend", insuranceCard)
+    })
+}
 
 const handleSubmit = async (e) =>{
     e.preventDefault()
+    policiesContainer.innerHTML=""
 
     let bodyObj = {
         profileid: userId,
@@ -63,41 +76,11 @@ const handleSubmit = async (e) =>{
         .then(response => response.json())
         .then(data => displayAvailableInsuranceDetails(data))
         .catch(err => console.error(err.message))
-
-//    const responseArr = await response.json()
-//
-//    if (response.status === 200){
-//        window.location.replace(responseArr[0])
-//    }
 }
 
-const displayAvailableInsuranceDetails = (array) => {
-    policiesContainer.innerHTML = '<table><tr>'
-        array.forEach(obj => {
-    let displayCard = document.createElement("div")
 
-    displayCard.classList.add("m-2")
-    displayCard.innerHTML = `<td>
-        <div class="card d-flex" style="width: 18rem; height: 18rem;">
-            <div class="card-body d-flex flex-column  justify-content-between" style="height: available">
-                <p>
-                    <p class="card-text"> <h4> ${obj.policyname}</h4></p><br>
-                    ${obj.policydetail}<br>
-                    Limit:  ${obj.policylimit}<br>
-                    Premium: ${obj.policydailyprice}
 
-               </p>
-               <div class="d-flex justify-content-between">
-                   <button class="btn btn-secondary" onclick="handleInsert(${obj.policyid})">Select</button>
-               </div>
-            </div>
-        </div></td>
-        `
-    policiesContainer.append(displayCard)
 
-    })
-    policiesContainer.innerHTML = policiesContainer.innerHTML + '</tr></table>'
-}
 
 
 

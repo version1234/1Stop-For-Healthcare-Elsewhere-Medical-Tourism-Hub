@@ -23,29 +23,12 @@ h1::first-letter{
 font-size: 60px;
 }
 
-
-
 h2{
 text-align: center;
 font-family: 'kaushan Script', cursive;
 color: blue;
 margin-top: 0px;
 
-}
-h5{
-font-family: 'kaushan Script', cursive;
-font-size: 2rem;
-    color: black;
-
-}
-
-p{
-display: block;
-font-family: 'kaushan Script', cursive;
-    margin-block-start: 0 40px;
-    margin-block-end: 1em;
-    margin-inline-start: 40px;
-    margin-inline-end: 0px;
 }
 
 h3{
@@ -96,12 +79,13 @@ text-transform: uppercase;
 .button {
     display: inline;
     justify-content: center;
-    width: 300px;
+    width: 100px;
     height: 15px;
-    margin: 0 300px;
+    margin: 0 100px;
     background: white;
     padding: 10px;
     text-align: center;
+    margin-bottom: 1rem;
     border-radius: 5px;
     color: blue;
     font-weight: bold;
@@ -146,7 +130,7 @@ ul{
 
 }
 
-#via-selectedInsurance-div{
+#via-policies-container{
     display:flex;
     flex-wrap: wrap;
      margin-left: 40px;
@@ -165,7 +149,7 @@ ul{
   border: 2px solid red;
   padding: 10px 20px;
   text-align: center;
-    background-color: red;
+    background-color: blue;
     color: white;
   text-decoration: none;
   display: inline-block;}
@@ -199,7 +183,7 @@ a:hover, a:active {
 
 
 button:hover, button:active {
-    background-color: green;
+    background-color: blue;
     color: white;
   }
 
