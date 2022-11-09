@@ -112,7 +112,7 @@ text-transform: uppercase;
 border: 2px solid black;
     padding: 0px;
     width: 415px;
-    height: 120px;
+    height: 130px;
     display: flex;
     flex-wrap: wrap;
     margin-left: 40 0px;
@@ -131,7 +131,7 @@ ul{
     margin-bottom: 1rem;
     padding: 10px;
     width: 350px;
-    height: 250px
+    height: 285px
 }
 
 .imgcard{

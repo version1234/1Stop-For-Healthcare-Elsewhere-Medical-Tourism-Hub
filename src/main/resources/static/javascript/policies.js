@@ -47,8 +47,9 @@ const displayAvailableInsuranceDetails = (array) => {
                    <h3> ${obj.policyname}</h3><br>
                    ${obj.policydetail}<br>
                    Limit:  ${obj.policylimit}<br>
-                   Premium: ${obj.policydailyprice}
-                   image: ${obj.imageName}
+                   Deductable: ${obj.policyDeductable}<br>
+                   Premium: $${obj.policydailyprice}
+
                   <div>
                       <button class="button3" onclick="handleInsert(${obj.policyid})">Select</button>
                   </div>
@@ -86,7 +87,13 @@ const handleSubmit = async (e) =>{
 
 
 
+async function verifyAndRoute(userId) {
+    if(userId==null){
+     window.location.replace("http://localhost:8082/1Stop4HEMTP.html")
+    }
+}
 
+verifyAndRoute(userId);
 
 
 policiesForm.addEventListener("submit", handleSubmit);

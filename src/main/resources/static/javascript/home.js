@@ -80,7 +80,8 @@ const displayConfirmedInsuranceDetails = (array) => {
                 <h3> ${obj.policy.policyname}</h3><br>
                 ${obj.policy.policydetail}<br>
                 Limit:  ${obj.policy.policylimit}<br>
-                Premium: ${obj.price}<br>
+                Deductable: ${obj.policy.policyDeductable}<br>
+                Premium: $${obj.price}<br>
                 Valid From:  ${obj.startDateDisplay},  To:  ${obj.endDateDisplay}<br>
                <div >
                    <button class="button3" onclick="handleDelete(${obj.confirmid})">Delete</button>
@@ -92,6 +93,13 @@ const displayConfirmedInsuranceDetails = (array) => {
     })
 }
 
+async function verifyAndRoute(userId) {
+    if(userId==null){
+     window.location.replace("http://localhost:8082/1Stop4HEMTP.html")
+    }
+}
+
+verifyAndRoute(userId);
 
 getUserDetails(userId);
 getConfirmedInsuranceDetailsByUser(userId);

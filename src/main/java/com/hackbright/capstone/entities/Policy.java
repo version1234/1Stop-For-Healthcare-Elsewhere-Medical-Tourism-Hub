@@ -33,6 +33,9 @@ public class Policy {
     private String policylimit;
 
     @Column
+    private String policyDeductable;
+
+    @Column
     private int policydailyprice;
 
     @Column
@@ -67,5 +70,7 @@ public class Policy {
             this.agelimitmax = policyDto.getAgelimitmax();
         if (policyDto.getImageName() != null)
             this.imageName = policyDto.getImageName();
+        if (policyDto.getPolicyDeductable() != null)
+            this.policyDeductable = policyDto.getPolicyDeductable();
     }
 }

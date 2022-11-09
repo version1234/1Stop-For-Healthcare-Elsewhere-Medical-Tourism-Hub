@@ -32,7 +32,8 @@ public class UserProfileController {
     @GetMapping("/{profileId}")
     public ProfileDto getUserDetails(@PathVariable Long profileId) {
 
-        return profileService.userDetailsById(profileId);
+        ProfileDto profileDto = profileService.userDetailsById(profileId);
+        return profileDto;
     }
 
 }

@@ -18,6 +18,7 @@ public class PolicyDto implements Serializable {
 
     private String policydetail;
 
+    private String policyDeductable;
     private String policylimit;
 
     private int policydailyprice;
@@ -45,5 +46,7 @@ public class PolicyDto implements Serializable {
             this.agelimitmax = policy.getAgelimitmax();
         if (policy.getImageName() != null)
             this.imageName = policy.getImageName();
+        if (policy.getPolicyDeductable() != null)
+            this.policyDeductable = policy.getPolicyDeductable();
     }
 }

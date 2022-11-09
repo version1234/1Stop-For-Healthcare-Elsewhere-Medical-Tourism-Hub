@@ -63,5 +63,6 @@ public class ConfirmPolityDto {
         if (confirm.getPolicy().getImageName() != null) {
             this.imageName = confirm.getPolicy().getImageName();
         }
+
     }
 }
