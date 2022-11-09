@@ -1,6 +1,5 @@
 package com.hackbright.capstone.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.hackbright.capstone.dtos.ProfileDto;
 import lombok.AllArgsConstructor;
@@ -34,6 +33,7 @@ public class Profile {
     private String firstname;
 
     @Column
+
     private String lastname;
 
     @Column
