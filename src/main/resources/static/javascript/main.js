@@ -14,7 +14,7 @@ function handleLogout(){
 
 async function verifyAndRoute(userId) {
     if(userId!=null){
-        document.getElementById('loginLogutLink').innerHTML='<a href="./home.html">Home</a>  <a href="./register.html">Profile</a>  <a href="./login.html" onclick="handleLogout()">Logout</a>'
+        document.getElementById('loginLogutLink').innerHTML='<a href="./home.html">Home</a>  <a href="./register.html">Edit Profile</a>  <a href="./login.html" onclick="handleLogout()">Logout</a>'
     }
 }
 

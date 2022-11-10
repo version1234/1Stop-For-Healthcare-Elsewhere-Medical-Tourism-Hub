@@ -11,7 +11,43 @@ background-size: cover;
 background-repeat: repeat;
 height: 100vh;
 }
+@keyframes imagedown{
+    0%{
+        transform: translateY(-100px)
 
+    }
+    100%{
+        transform: translateY(0);
+
+    }
+}
+}
+@keyframes imageright{
+    0%{
+        transform: translateX(-300px)
+
+    }
+    100%{
+        transform: translateX(0);
+
+    }
+}
+
+.logo{
+    width: 100px;
+    cursor: pointer;
+    animation: imagedown 1s; linear 1;
+    animation-delay: 1s;
+}
+.heading{
+    animation: imagedown 1s; linear 1;
+    animation-delay: 2s;
+}
+
+.about{
+    animation: imageright 1s; linear 1;
+    animation-delay: 3s;
+}
 h1{
 text-align: center;
 font-family: 'kaushan Script', cursive;
